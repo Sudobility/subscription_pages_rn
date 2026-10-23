@@ -7,10 +7,10 @@
       "devDependencies": {
         "@eslint/js": "~9.39.5",
         "@react-native-segmented-control/segmented-control": "~2.5.7",
-        "@sudobility/design": "^1.1.63",
+        "@sudobility/design": "^1.1.66",
         "@sudobility/subscription-components-rn": "^1.0.7",
-        "@sudobility/subscription_lib": "^0.0.55",
-        "@sudobility/types": "^1.9.75",
+        "@sudobility/subscription_lib": "^0.0.56",
+        "@sudobility/types": "^1.9.76",
         "@tanstack/react-query": "~5.104.5",
         "@types/react": "~18.3.31",
         "@typescript-eslint/eslint-plugin": "~8.72.0",
@@ -18,7 +18,7 @@
         "eslint": "~9.39.5",
         "eslint-config-prettier": "~10.1.8",
         "eslint-plugin-prettier": "~5.5.7",
-        "eslint-plugin-react-hooks": "~7.1.1",
+        "eslint-plugin-react-hooks": "~7.0.1",
         "eslint-plugin-react-refresh": "~0.4.26",
         "prettier": "~3.9.10",
         "react": "~18.3.1",
@@ -27,10 +27,10 @@
       },
       "peerDependencies": {
         "@react-native-segmented-control/segmented-control": ">=2.5.0",
-        "@sudobility/design": "^1.1.63",
+        "@sudobility/design": "^1.1.66",
         "@sudobility/subscription-components-rn": "^1.0.7",
-        "@sudobility/subscription_lib": "^0.0.55",
-        "@sudobility/types": "^1.9.75",
+        "@sudobility/subscription_lib": "^0.0.56",
+        "@sudobility/types": "^1.9.76",
         "react": ">=18",
         "react-native": ">=0.74",
       },
@@ -293,15 +293,15 @@
 
     "@sinonjs/fake-timers": ["@sinonjs/fake-timers@10.3.0", "", { "dependencies": { "@sinonjs/commons": "^3.0.0" } }, "sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA=="],
 
-    "@sudobility/components-rn": ["@sudobility/components-rn@1.0.126", "https://npm.pkg.github.com/download/@sudobility/components-rn/1.0.126/3dfa90d52f1b27726c3d66fefb30f4a0625d8714", { "peerDependencies": { "@react-native-community/slider": "^4.5.1", "@sudobility/design": "^1.1.63", "@sudobility/types": "^1.9.75", "class-variance-authority": "^0.7.0", "clsx": "^2.0.0", "nativewind": ">=4.0.0", "react": "^18.0.0 || ^19.0.0", "react-native": ">=0.72.0", "react-native-gesture-handler": ">=2.0.0", "react-native-reanimated": ">=3.0.0", "react-native-safe-area-context": ">=4.0.0", "react-native-svg": ">=13.0.0", "tailwind-merge": ">=2.0.0" } }, "sha512-BdVYP6t5shDKdkxab1vfEt/814BmOCvbGrP2xoJ08vuGVOPy5oxR0xjz/DP4HEUAOurBZe45LSqCawlS36ivmg=="],
+    "@sudobility/components-rn": ["@sudobility/components-rn@1.0.128", "https://npm.pkg.github.com/download/@sudobility/components-rn/1.0.128/ea7f3ab0b8264f1035ee44ea1154df298943db75", { "peerDependencies": { "@react-native-community/slider": "^4.5.1", "@sudobility/design": "^1.1.66", "@sudobility/types": "^1.9.76", "class-variance-authority": "^0.7.0", "clsx": "^2.0.0", "nativewind": ">=4.0.0", "react": "^18.0.0 || ^19.0.0", "react-native": ">=0.72.0", "react-native-gesture-handler": ">=2.0.0", "react-native-reanimated": ">=3.0.0", "react-native-safe-area-context": ">=4.0.0", "react-native-svg": ">=13.0.0", "tailwind-merge": ">=2.0.0" } }, "sha512-tj2ly14SXvz0ZoQXmq6DIDIJZpPg/Ps8ORI69CRlWxbZQoc+OZl0h+AYZizjJypqMpno9xXxEVdUejLntb13PA=="],
 
-    "@sudobility/design": ["@sudobility/design@1.1.63", "https://npm.pkg.github.com/download/@sudobility/design/1.1.63/fa77125bd9015806a52f990f09f33cf9bebdb67a", { "peerDependencies": { "clsx": ">=2.0.0", "tailwind-merge": ">=2.0.0" } }, "sha512-WkNg96/8erBO+NL/z88/q4yMTenRLKvVht2Cjqr298eSRa0KtumQguXHXf5bDwRiJp4/cqjKuQfo0grZXfb4hA=="],
+    "@sudobility/design": ["@sudobility/design@1.1.66", "https://npm.pkg.github.com/download/@sudobility/design/1.1.66/08ff28eba0e05a9e6916a0aae67ac2c36df590f2", { "peerDependencies": { "clsx": ">=2.0.0", "tailwind-merge": ">=2.0.0" } }, "sha512-E+5HxPKHsujJQMYhtdgtzcGkGtaHhuWpMBd05n+dq/FMihrLT8GeMj6G75XpaxqQmbWYOfkjHEUV2GFcECzeNw=="],
 
     "@sudobility/subscription-components-rn": ["@sudobility/subscription-components-rn@1.0.7", "https://npm.pkg.github.com/download/@sudobility/subscription-components-rn/1.0.7/a995733d21baf458b8aa39eb648caae64bb2551e", { "peerDependencies": { "@sudobility/components-rn": "^1.0.123", "@sudobility/design": "^1.1.60", "react": "^18.0.0 || ^19.0.0", "react-native": ">=0.72.0", "react-native-purchases": ">=7.0.0" } }, "sha512-8cH/C04uKsJoq9QoV/sqmw/R6jjBdGKC0aXVyHaTTfzDP6B7DHtSk0QwUlaT3Y7KcjJcV92jb8ZxW+e5PQ/4ww=="],
 
-    "@sudobility/subscription_lib": ["@sudobility/subscription_lib@0.0.55", "https://npm.pkg.github.com/download/@sudobility/subscription_lib/0.0.55/597b6ac2baf5d22648f2eddf33bdb0d17e1b187e", { "peerDependencies": { "@revenuecat/purchases-js": "^1.0.0", "@sudobility/types": "^1.9.75", "@tanstack/react-query": "^5.0.0", "react": "^18.0.0 || ^19.0.0", "react-native-purchases": ">=7.0.0" } }, "sha512-vqWJXwosDz+0s/bCjA3z9cGy8q9oRnIMrqv6xlQX7oxxv8IYC+67MM05Ym0MwYSH3zOkmU/ILr94dWPLjB6wbA=="],
+    "@sudobility/subscription_lib": ["@sudobility/subscription_lib@0.0.56", "https://npm.pkg.github.com/download/@sudobility/subscription_lib/0.0.56/8496862d470e938a72ad0d8b8cf077801f6587ff", { "peerDependencies": { "@revenuecat/purchases-js": "^1.0.0", "@sudobility/types": "^1.9.76", "@tanstack/react-query": "^5.0.0", "react": "^18.0.0 || ^19.0.0", "react-native-purchases": ">=7.0.0" } }, "sha512-m4bd0jbURZq6/g4Tzs0cOA3kondLeMOpa1wl/I+MYZq3jmZ881vyrTMXMx4hkpIjdm9dgnWjqCSilrYzRep4ew=="],
 
-    "@sudobility/types": ["@sudobility/types@1.9.75", "https://npm.pkg.github.com/download/@sudobility/types/1.9.75/d041222e1a9c48b1857a25686361fa493265e572", {}, "sha512-c0IqHhNsyMxWFzv+sC8drTXid1s/yberzme5JJTYIR2CE+DxpnjFCyL0AIMKUwTQYhYKvRZG0JkWRFplirbBrw=="],
+    "@sudobility/types": ["@sudobility/types@1.9.76", "https://npm.pkg.github.com/download/@sudobility/types/1.9.76/71635156f72fd9461107d5f147b3dc1c49f863d0", {}, "sha512-b7maZHR5wM84VlQ+l9R+2guzSOrExog6OUNy1oCe7h0abW13syycmnLQL0g+qql0aQ84qTB4A0mJelhY3Vef4Q=="],
 
     "@tanstack/query-core": ["@tanstack/query-core@5.104.5", "", {}, "sha512-Q94gI8Opd+CbdVNOdj8ZCyV8WqLYitrDq1t96Xc8WZT6lY0r5iRnJLXYDxMex7EEf2v+mXvn4FcjaBKSxXZQ9A=="],
 
@@ -519,7 +519,7 @@
 
     "eslint-plugin-prettier": ["eslint-plugin-prettier@5.5.7", "", { "dependencies": { "prettier-linter-helpers": "^1.0.1", "synckit": "^0.12.3" }, "peerDependencies": { "@types/eslint": ">=8.0.0", "eslint": ">=8.0.0", "eslint-config-prettier": ">= 7.0.0 <10.0.0 || >=10.1.0", "prettier": ">=3.0.0" }, "optionalPeers": ["@types/eslint", "eslint-config-prettier"] }, "sha512-WjHyn3GrFd+ZR0rzsLiM4zJZ35PZMOE0SUIxzGmnWNG0126yNfJKJzObmmkYDwHJfGlkz3PSlzyG9ez/LJntwg=="],
 
-    "eslint-plugin-react-hooks": ["eslint-plugin-react-hooks@7.1.1", "", { "dependencies": { "@babel/core": "^7.24.4", "@babel/parser": "^7.24.4", "hermes-parser": "^0.25.1", "zod": "^3.25.0 || ^4.0.0", "zod-validation-error": "^3.5.0 || ^4.0.0" }, "peerDependencies": { "eslint": "^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0 || ^10.0.0" } }, "sha512-f2I7Gw6JbvCexzIInuSbZpfdQ44D7iqdWX01FKLvrPgqxoE7oMj8clOfto8U6vYiz4yd5oKu39rRSVOe1zRu0g=="],
+    "eslint-plugin-react-hooks": ["eslint-plugin-react-hooks@7.0.1", "", { "dependencies": { "@babel/core": "^7.24.4", "@babel/parser": "^7.24.4", "hermes-parser": "^0.25.1", "zod": "^3.25.0 || ^4.0.0", "zod-validation-error": "^3.5.0 || ^4.0.0" }, "peerDependencies": { "eslint": "^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0" } }, "sha512-O0d0m04evaNzEPoSW+59Mezf8Qt0InfgGIBJnpC0h3NH/WjUAR7BIKUfysC6todmtiZ/A0oUVS8Gce0WhBrHsA=="],
 
     "eslint-plugin-react-refresh": ["eslint-plugin-react-refresh@0.4.26", "", { "peerDependencies": { "eslint": ">=8.40" } }, "sha512-1RETEylht2O6FM/MvgnyvT+8K21wLqDNg4qD51Zj3guhjt433XbnnkVttHMyaVyAFD03QSV4LPS5iE3VQmO7XQ=="],
 
