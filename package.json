@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/subscription_pages_rn",
-  "version": "0.0.65",
+  "version": "0.0.66",
   "description": "Subscription page components for React Native applications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,31 +16,31 @@
     "react": ">=18",
     "react-native": ">=0.74",
     "@react-native-segmented-control/segmented-control": ">=2.5.0",
-    "@sudobility/subscription_lib": "^0.0.57",
+    "@sudobility/subscription_lib": "^0.0.58",
     "@sudobility/subscription-components-rn": "^1.0.7",
     "@sudobility/types": "^1.9.76",
     "@sudobility/design": "^1.1.66"
   },
   "devDependencies": {
     "@sudobility/design": "^1.1.66",
-    "@eslint/js": "~9.39.5",
+    "@eslint/js": "~10.0.1",
     "@react-native-segmented-control/segmented-control": "~2.5.7",
     "@sudobility/subscription-components-rn": "^1.0.7",
-    "@sudobility/subscription_lib": "^0.0.57",
+    "@sudobility/subscription_lib": "^0.0.58",
     "@sudobility/types": "^1.9.76",
     "@tanstack/react-query": "~5.104.5",
-    "@types/react": "~18.3.31",
+    "@types/react": "~19.3.0",
     "@typescript-eslint/eslint-plugin": "~8.72.0",
     "@typescript-eslint/parser": "~8.72.0",
-    "eslint": "~9.39.5",
+    "eslint": "~10.13.0",
     "eslint-config-prettier": "~10.1.8",
     "eslint-plugin-prettier": "~5.5.7",
-    "eslint-plugin-react-hooks": "~7.0.1",
+    "eslint-plugin-react-hooks": "~7.1.1",
     "eslint-plugin-react-refresh": "~0.4.26",
     "prettier": "~3.9.10",
-    "react": "~18.3.1",
-    "react-native": "~0.81.6",
-    "typescript": "~5.9.3"
+    "react": "~19.3.1",
+    "react-native": "~0.83.10",
+    "typescript": "~6.0.3"
   },
   "publishConfig": {
     "access": "public"
