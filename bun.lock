@@ -9,7 +9,7 @@
         "@react-native-segmented-control/segmented-control": "~2.5.7",
         "@sudobility/design": "^1.1.66",
         "@sudobility/subscription-components-rn": "^1.0.7",
-        "@sudobility/subscription_lib": "^0.0.58",
+        "@sudobility/subscription_lib": "^0.0.59",
         "@sudobility/types": "^1.9.76",
         "@tanstack/react-query": "~5.104.5",
         "@types/react": "~19.3.0",
@@ -29,7 +29,7 @@
         "@react-native-segmented-control/segmented-control": ">=2.5.0",
         "@sudobility/design": "^1.1.66",
         "@sudobility/subscription-components-rn": "^1.0.7",
-        "@sudobility/subscription_lib": "^0.0.58",
+        "@sudobility/subscription_lib": "^0.0.59",
         "@sudobility/types": "^1.9.76",
         "react": ">=18",
         "react-native": ">=0.74",
@@ -307,7 +307,7 @@
 
     "@sudobility/subscription-components-rn": ["@sudobility/subscription-components-rn@1.0.7", "https://npm.pkg.github.com/download/@sudobility/subscription-components-rn/1.0.7/a995733d21baf458b8aa39eb648caae64bb2551e", { "peerDependencies": { "@sudobility/components-rn": "^1.0.123", "@sudobility/design": "^1.1.60", "react": "^18.0.0 || ^19.0.0", "react-native": ">=0.72.0", "react-native-purchases": ">=7.0.0" } }, "sha512-8cH/C04uKsJoq9QoV/sqmw/R6jjBdGKC0aXVyHaTTfzDP6B7DHtSk0QwUlaT3Y7KcjJcV92jb8ZxW+e5PQ/4ww=="],
 
-    "@sudobility/subscription_lib": ["@sudobility/subscription_lib@0.0.58", "https://npm.pkg.github.com/download/@sudobility/subscription_lib/0.0.58/8e5f354011974c95287ac6815ab5ff0294fefb6b", { "peerDependencies": { "@revenuecat/purchases-js": "^1.0.0", "@sudobility/types": "^1.9.76", "@tanstack/react-query": "^5.0.0", "react": "^18.0.0 || ^19.0.0", "react-native-purchases": ">=7.0.0" } }, "sha512-xpVeJxSZuourGn1oScwIUspjqD3QHJLzKtq0zc9URTB0CPWQHgZVJJHQreHSea74g1l2VR3avj61WKZFfqk5VA=="],
+    "@sudobility/subscription_lib": ["@sudobility/subscription_lib@0.0.59", "https://npm.pkg.github.com/download/@sudobility/subscription_lib/0.0.59/22be7c33fc24085d56f3c20edbde0eaae7dbe85e", { "peerDependencies": { "@revenuecat/purchases-js": "^1.0.0", "@sudobility/types": "^1.9.76", "@tanstack/react-query": "^5.0.0", "react": "^18.0.0 || ^19.0.0", "react-native-purchases": ">=7.0.0" } }, "sha512-c+yiMRB0gu02EK7d9NAWGyUFL/yIyzfs1Xh7Ji2iyhHMswB7Fr9AH0fcf66pVKLyC4LmCqvSP6JybeSeV3vFUg=="],
 
     "@sudobility/types": ["@sudobility/types@1.9.76", "https://npm.pkg.github.com/download/@sudobility/types/1.9.76/71635156f72fd9461107d5f147b3dc1c49f863d0", {}, "sha512-b7maZHR5wM84VlQ+l9R+2guzSOrExog6OUNy1oCe7h0abW13syycmnLQL0g+qql0aQ84qTB4A0mJelhY3Vef4Q=="],
 
