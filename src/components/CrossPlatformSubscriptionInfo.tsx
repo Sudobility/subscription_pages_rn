@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Linking,
-  StyleSheet,
-} from 'react-native';
-import { colors } from '@sudobility/design';
+import { View, Text, Pressable, Linking } from 'react-native';
 import type {
   SubscriptionPlatform,
   BackendSubscriptionResult,
@@ -34,82 +27,47 @@ export function CrossPlatformSubscriptionInfo({
     : 'another platform';
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Subscription Active</Text>
-
-      <Text style={styles.detail}>
-        Entitlements:{' '}
-        <Text style={styles.bold}>
-          {backendSubscription.entitlements.join(', ')}
-        </Text>
+    <View className='rounded-xl border border-warning/20 bg-warning/10 p-6 items-center gap-4'>
+      <Text className='text-lg font-semibold text-foreground'>
+        Subscription Active
       </Text>
 
-      {backendSubscription.subscriptionStartedAt && (
-        <Text style={styles.detail}>
-          Subscribed since:{' '}
-          <Text style={styles.bold}>
-            {new Date(
-              backendSubscription.subscriptionStartedAt
-            ).toLocaleDateString()}
+      <View className='gap-2 items-center'>
+        <Text className='text-sm text-foreground'>
+          Entitlements:{' '}
+          <Text className='font-medium'>
+            {backendSubscription.entitlements.join(', ')}
           </Text>
         </Text>
-      )}
+        {backendSubscription.subscriptionStartedAt && (
+          <Text className='text-sm text-foreground'>
+            Subscribed since:{' '}
+            <Text className='font-medium'>
+              {new Date(
+                backendSubscription.subscriptionStartedAt
+              ).toLocaleDateString()}
+            </Text>
+          </Text>
+        )}
+      </View>
 
-      <Text style={styles.message}>
+      <Text className='text-sm text-warning text-center'>
         Your subscription was purchased on{' '}
-        <Text style={styles.bold}>{platformName}</Text>. To manage your
+        <Text className='font-semibold'>{platformName}</Text>. To manage your
         subscription, please visit your {platformName} settings.
       </Text>
 
       {managementUrl && (
-        <TouchableOpacity
-          style={styles.button}
+        <Pressable
           onPress={() => Linking.openURL(managementUrl)}
+          accessibilityRole='button'
+          className='rounded-lg px-5 py-2.5 bg-primary items-center'
         >
-          <Text style={styles.buttonText}>Manage Subscription</Text>
-        </TouchableOpacity>
+          <Text className='text-sm font-semibold text-primary-foreground'>
+            Manage Subscription
+          </Text>
+        </Pressable>
       )}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    borderWidth: 1,
-    borderColor: colors.raw.amber[400],
-    borderRadius: 12,
-    backgroundColor: colors.raw.amber[50],
-    padding: 20,
-    alignItems: 'center',
-    gap: 12,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: colors.raw.neutral[900],
-  },
-  detail: {
-    fontSize: 14,
-    color: colors.raw.neutral[700],
-  },
-  bold: {
-    fontWeight: '600',
-  },
-  message: {
-    fontSize: 14,
-    color: colors.raw.amber[800],
-    textAlign: 'center',
-  },
-  button: {
-    backgroundColor: colors.raw.blue[600],
-    borderRadius: 8,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    marginTop: 4,
-  },
-  buttonText: {
-    color: colors.raw.neutral[0],
-    fontSize: 14,
-    fontWeight: '600',
-  },
-});
