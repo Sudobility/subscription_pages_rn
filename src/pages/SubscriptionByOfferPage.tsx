@@ -31,7 +31,7 @@ import {
   SubscriptionLayout,
   SegmentedControl,
   type FreeTileConfig,
-} from '@sudobility/subscription-components-rn';
+} from '@sudobility/components-rn/subscription';
 import { cn, pressProps } from '@sudobility/components-rn';
 import { CrossPlatformSubscriptionInfo } from '../components/CrossPlatformSubscriptionInfo';
 

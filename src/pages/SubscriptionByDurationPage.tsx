@@ -26,7 +26,7 @@ import {
   SubscriptionTile,
   SegmentedControl,
   type FreeTileConfig,
-} from '@sudobility/subscription-components-rn';
+} from '@sudobility/components-rn/subscription';
 import { CrossPlatformSubscriptionInfo } from '../components/CrossPlatformSubscriptionInfo';
 
 export interface SubscriptionByDurationPageProps {
