@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/subscription_pages_rn",
-  "version": "0.0.79",
+  "version": "0.0.80",
   "description": "Subscription page components for React Native applications",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -15,7 +15,7 @@
     }
   },
   "scripts": {
-    "build": "bunx tsc -p tsconfig.build.json",
+    "build": "bunx tsc -p tsconfig.build.json && node scripts/fix-esm-imports.mjs",
     "typecheck": "bunx tsc --noEmit",
     "lint": "eslint . --ext ts,tsx --ignore-pattern dist --ignore-pattern node_modules --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext ts,tsx --ignore-pattern dist --ignore-pattern node_modules --fix",
@@ -26,10 +26,10 @@
     "react": ">=18",
     "react-native": ">=0.74",
     "react-native-purchases": ">=7.0.0",
-    "@sudobility/subscription_lib": "^0.0.60",
-    "@sudobility/components-rn": "^1.0.137",
-    "@sudobility/types": "^1.9.76",
-    "@sudobility/design": "^1.1.66"
+    "@sudobility/subscription_lib": "^0.0.61",
+    "@sudobility/components-rn": "^1.0.138",
+    "@sudobility/types": "^1.9.78",
+    "@sudobility/design": "^1.1.68"
   },
   "peerDependenciesMeta": {
     "react-native-purchases": {
@@ -37,11 +37,11 @@
     }
   },
   "devDependencies": {
-    "@sudobility/design": "^1.1.66",
+    "@sudobility/design": "^1.1.68",
     "@eslint/js": "~10.0.1",
-    "@sudobility/components-rn": "^1.0.137",
-    "@sudobility/subscription_lib": "^0.0.60",
-    "@sudobility/types": "^1.9.76",
+    "@sudobility/components-rn": "^1.0.138",
+    "@sudobility/subscription_lib": "^0.0.61",
+    "@sudobility/types": "^1.9.78",
     "@tanstack/react-query": "~5.104.5",
     "@types/react": "~19.3.0",
     "@typescript-eslint/eslint-plugin": "~8.72.0",
