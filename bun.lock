@@ -6,7 +6,7 @@
       "name": "@sudobility/subscription_pages_rn",
       "devDependencies": {
         "@eslint/js": "~10.0.1",
-        "@sudobility/components-rn": "^1.0.136",
+        "@sudobility/components-rn": "^1.0.137",
         "@sudobility/design": "^1.1.66",
         "@sudobility/subscription_lib": "^0.0.60",
         "@sudobility/types": "^1.9.76",
@@ -25,7 +25,7 @@
         "typescript": "~6.0.3",
       },
       "peerDependencies": {
-        "@sudobility/components-rn": "^1.0.136",
+        "@sudobility/components-rn": "^1.0.137",
         "@sudobility/design": "^1.1.66",
         "@sudobility/subscription_lib": "^0.0.60",
         "@sudobility/types": "^1.9.76",
@@ -417,7 +417,7 @@
 
     "@sinonjs/fake-timers": ["@sinonjs/fake-timers@10.3.0", "", { "dependencies": { "@sinonjs/commons": "^3.0.0" } }, "sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA=="],
 
-    "@sudobility/components-rn": ["@sudobility/components-rn@1.0.136", "https://npm.pkg.github.com/download/@sudobility/components-rn/1.0.136/8ff0656ded83b4fa5f90b609d517255f7cf2ae8e", { "peerDependencies": { "@react-native-community/slider": "^4.5.1", "@react-navigation/native": ">=7.0.0", "@react-navigation/native-stack": ">=7.0.0", "@sudobility/design": "^1.1.66", "@sudobility/types": "^1.9.76", "class-variance-authority": "^0.7.0", "clsx": "^2.0.0", "expo-clipboard": ">=5.0.0", "nativewind": ">=4.0.0", "react": "^18.0.0 || ^19.0.0", "react-native": ">=0.72.0", "react-native-gesture-handler": ">=2.0.0", "react-native-reanimated": ">=3.0.0", "react-native-safe-area-context": ">=4.0.0", "react-native-screens": ">=4.0.0", "react-native-svg": ">=13.0.0", "tailwind-merge": ">=2.0.0" } }, "sha512-9shN3sIYmtXIxczF3gQ59yPBppdclVlpEKeSVRj09flPUmeoNRyF/3GpnwMQow3eiffeeUAbJkucs0coE/I/UQ=="],
+    "@sudobility/components-rn": ["@sudobility/components-rn@1.0.137", "https://npm.pkg.github.com/download/@sudobility/components-rn/1.0.137/aad534876dfdbd050c93c3cd12dd6f55c726c487", { "peerDependencies": { "@react-native-community/slider": "^4.5.1", "@react-navigation/native": ">=7.0.0", "@react-navigation/native-stack": ">=7.0.0", "@sudobility/design": "^1.1.66", "@sudobility/types": "^1.9.76", "class-variance-authority": "^0.7.0", "clsx": "^2.0.0", "expo-clipboard": ">=5.0.0", "nativewind": ">=4.0.0", "react": "^18.0.0 || ^19.0.0", "react-native": ">=0.72.0", "react-native-gesture-handler": ">=2.0.0", "react-native-reanimated": ">=3.0.0", "react-native-safe-area-context": ">=4.0.0", "react-native-screens": ">=4.0.0", "react-native-svg": ">=13.0.0", "tailwind-merge": ">=2.0.0" } }, "sha512-NCB4eFt83I8ktjcHaXrlLx9WC0o5yuAC772uRmVxc+EPieMfjB+uqp6iy8D+l8BziT4rxeEYt9CJcGwpAk7I8g=="],
 
     "@sudobility/design": ["@sudobility/design@1.1.66", "https://npm.pkg.github.com/download/@sudobility/design/1.1.66/08ff28eba0e05a9e6916a0aae67ac2c36df590f2", { "peerDependencies": { "clsx": ">=2.0.0", "tailwind-merge": ">=2.0.0" } }, "sha512-E+5HxPKHsujJQMYhtdgtzcGkGtaHhuWpMBd05n+dq/FMihrLT8GeMj6G75XpaxqQmbWYOfkjHEUV2GFcECzeNw=="],
 
