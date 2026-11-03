@@ -22,6 +22,7 @@ import {
   useOfferingPackages,
   useUserSubscription,
   useBackendSubscription,
+  useIsUserSubscribable,
   getSubscriptionInstance,
   refreshSubscription,
   periodToMonths,
@@ -36,8 +37,6 @@ import { cn, pressProps } from '@sudobility/components-rn';
 import { CrossPlatformSubscriptionInfo } from '../components/CrossPlatformSubscriptionInfo';
 
 export interface SubscriptionByOfferPageProps {
-  /** Whether the user is logged in */
-  isLoggedIn: boolean;
   /** Callback when user needs to navigate to login. offerId and packageId are passed when a specific package CTA is clicked. */
   onNavigateToLogin: (offerId?: string, packageId?: string) => void;
   /** User ID for subscription lookup */
@@ -124,7 +123,6 @@ function calcSavingsPercent(
 }
 
 export function SubscriptionByOfferPage({
-  isLoggedIn,
   onNavigateToLogin,
   userId,
   userEmail,
@@ -144,17 +142,10 @@ export function SubscriptionByOfferPage({
   const loc = (key: string, fallback: string) =>
     translate ? translate(key, fallback) : fallback;
 
-  // Whether a purchase requires a logged-in (real) user.
-  //
-  // This is the one behavioral divergence from the web page. On web billing
-  // (RevenueCat's JS SDK / Stripe / rc_billing) the `purchase` call requires an
-  // identified user, so an anonymous visitor must sign in first — the web page
-  // therefore always gates purchase on `isLoggedIn`. With native in-app
-  // purchases (Apple / Google), RevenueCat buys against an anonymous app-user
-  // id, so a visitor can subscribe without signing in. The only RN platform on
-  // web billing is Windows (SubscriptionPlatform.Web); every other platform
-  // (iOS / Android / macOS) uses IAP.
-  const requiresLoginToPurchase = currentPlatform === SubscriptionPlatform.Web;
+  // Whether this user can start a subscription purchase — the single source of
+  // truth (subscription_lib), derived from the userId and whether the adapter
+  // bills through native IAP. All subscription options gate on this.
+  const isUserSubscribable = useIsUserSubscribable();
 
   const {
     offerings,
@@ -260,10 +251,11 @@ export function SubscriptionByOfferPage({
   const basePkg = packages[0] ?? null;
 
   const getFreeTileConfig = (): FreeTileConfig | undefined => {
-    // Web billing only: an anonymous visitor must sign in before anything, so
-    // the free tile invites them to sign up. With IAP there is no sign-in gate,
-    // so an anonymous user is already on the free plan (handled below).
-    if (requiresLoginToPurchase && !isLoggedIn) {
+    // When the user cannot subscribe yet (web billing and not signed in), the
+    // free tile invites them to sign in. On IAP a user with a userId can
+    // subscribe, so this is skipped and they are already on the free plan
+    // (handled below).
+    if (!isUserSubscribable) {
       return {
         title: loc('free', 'Free'),
         price: '$0',
@@ -302,8 +294,8 @@ export function SubscriptionByOfferPage({
   };
 
   const getCtaLabel = (pkg: SubscriptionPackage): string => {
-    // Web billing only: an anonymous visitor must sign in before purchasing.
-    if (requiresLoginToPurchase && !isLoggedIn) {
+    // Can't subscribe yet (web billing and not signed in): invite sign-in.
+    if (!isUserSubscribable) {
       return loc('login_to_continue', 'Log in to Continue');
     }
     const hasSubscription = subscription?.isActive && subscription.packageId;
@@ -319,9 +311,9 @@ export function SubscriptionByOfferPage({
   };
 
   const getCtaAction = (pkg: SubscriptionPackage, offerId: string) => {
-    // Web billing only: route an anonymous visitor to sign-in first. With IAP a
-    // purchase proceeds anonymously, so fall through to handlePurchase.
-    if (requiresLoginToPurchase && !isLoggedIn) {
+    // Can't subscribe yet (web billing and not signed in): route to sign-in.
+    // On IAP a user with a userId subscribes directly via handlePurchase.
+    if (!isUserSubscribable) {
       return () => onNavigateToLogin(offerId, pkg.packageId);
     }
     const hasSubscription = subscription?.isActive && subscription.packageId;
@@ -357,8 +349,11 @@ export function SubscriptionByOfferPage({
 
   const displayError = purchaseError ?? (error ? error.message : null);
 
+  // An active subscription is shown whenever one exists. It does not depend on
+  // `isLoggedIn`: on IAP platforms an anonymous (not "logged in") user still has
+  // a userId and can hold an active subscription, which must be reflected here.
   const currentStatusConfig =
-    isLoggedIn && subscription?.isActive && subscription.packageId
+    subscription?.isActive && subscription.packageId
       ? {
           isActive: true as const,
           activeContent: {
@@ -452,7 +447,6 @@ export function SubscriptionByOfferPage({
                 ? loc(period, PERIOD_LABELS[period] ?? capitalize(period))
                 : pkg.name;
               const isCurrentPlan =
-                isLoggedIn &&
                 subscription?.isActive &&
                 subscription.packageId === pkg.packageId &&
                 subscription.offeringId === selectedSegment;

@@ -22,6 +22,17 @@ import type {
   SubscriptionAdapter,
 } from '@sudobility/subscription_lib';
 
+/** Options for {@link createRevenueCatRNAdapter}. */
+export interface RevenueCatRNAdapterOptions {
+  /**
+   * Whether this platform bills through native in-app purchase (App Store /
+   * Play Store), where an anonymous app user can subscribe. The app sets this
+   * per platform at init (iOS/iPadOS/Android/macOS: true; Windows uses the web
+   * adapter). `useIsUserSubscribable` reads it. Defaults to false.
+   */
+  usesNativeIap?: boolean;
+}
+
 // RevenueCat RN SDK types - using any since module may not be installed
 type PurchasesSDK = any;
 type RNPackage = any;
@@ -243,8 +254,13 @@ function convertEntitlement(
 /**
  * Create the subscription adapter for subscription_lib.
  */
-export function createRevenueCatRNAdapter(): SubscriptionAdapter {
+export function createRevenueCatRNAdapter(
+  options?: RevenueCatRNAdapterOptions
+): SubscriptionAdapter {
   return {
+    // Set by the app per platform; drives whether an anonymous user can
+    // subscribe (`useIsUserSubscribable`).
+    usesNativeIap: options?.usesNativeIap ?? false,
     async setUserId(userId: string | undefined, email?: string): Promise<void> {
       if (userId) {
         await setRevenueCatRNUser(userId, email);

@@ -17,6 +17,7 @@ import {
   usePackagesByDuration,
   useUserSubscription,
   useBackendSubscription,
+  useIsUserSubscribable,
   getSubscriptionInstance,
   refreshSubscription,
 } from '@sudobility/subscription_lib';
@@ -30,8 +31,6 @@ import {
 import { CrossPlatformSubscriptionInfo } from '../components/CrossPlatformSubscriptionInfo';
 
 export interface SubscriptionByDurationPageProps {
-  /** Whether the user is logged in */
-  isLoggedIn: boolean;
   /** Callback when user needs to navigate to login. offerId and packageId are passed when a specific package CTA is clicked. */
   onNavigateToLogin: (offerId?: string, packageId?: string) => void;
   /** User ID for subscription lookup (undefined if not logged in) */
@@ -68,7 +67,6 @@ export interface SubscriptionByDurationPageProps {
 }
 
 export function SubscriptionByDurationPage({
-  isLoggedIn,
   onNavigateToLogin,
   userId,
   userEmail,
@@ -88,10 +86,10 @@ export function SubscriptionByDurationPage({
   const loc = (key: string, fallback: string) =>
     translate ? translate(key, fallback) : fallback;
 
-  // See SubscriptionByOfferPage: web billing requires a signed-in user to
-  // purchase; native IAP (iOS / Android / macOS) buys anonymously, so only the
-  // Web platform (Windows on RN) gates purchase on login.
-  const requiresLoginToPurchase = currentPlatform === SubscriptionPlatform.Web;
+  // Whether this user can start a subscription purchase — the single source of
+  // truth (subscription_lib), derived from the userId and whether the adapter
+  // bills through native IAP. All subscription options gate on this.
+  const isUserSubscribable = useIsUserSubscribable();
 
   const {
     packagesByDuration,
@@ -170,7 +168,7 @@ export function SubscriptionByDurationPage({
   };
 
   const getFreeTileConfig = (): FreeTileConfig | undefined => {
-    if (requiresLoginToPurchase && !isLoggedIn) {
+    if (!isUserSubscribable) {
       return {
         title: loc('free', 'Free'),
         price: '$0',
@@ -209,7 +207,7 @@ export function SubscriptionByDurationPage({
   };
 
   const getPaidTileCta = (pkg: PackageWithOffer) => {
-    if (requiresLoginToPurchase && !isLoggedIn) {
+    if (!isUserSubscribable) {
       return {
         label: loc('login_to_continue', 'Log in to Continue'),
         onClick: () => onNavigateToLogin(pkg.offerId, pkg.package.packageId),
@@ -262,8 +260,10 @@ export function SubscriptionByDurationPage({
 
   const displayError = purchaseError ?? (error ? error.message : null);
 
+  // An active subscription is shown whenever one exists; it does not depend on
+  // `isLoggedIn` (an anonymous IAP user has a userId and can hold one).
   const currentStatusConfig =
-    isLoggedIn && subscription?.isActive && subscription.packageId
+    subscription?.isActive && subscription.packageId
       ? {
           isActive: true as const,
           activeContent: {
@@ -348,7 +348,6 @@ export function SubscriptionByDurationPage({
     >
       {currentPackages.map(pkg => {
         const isCurrentPlan =
-          isLoggedIn &&
           subscription?.isActive &&
           subscription.packageId === pkg.package.packageId &&
           subscription.offeringId === pkg.offerId;
