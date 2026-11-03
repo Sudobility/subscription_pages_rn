@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/subscription_pages_rn",
-  "version": "0.0.83",
+  "version": "0.0.84",
   "description": "Subscription page components for React Native applications",
   "main": "dist/index.js",
   "module": "dist/index.js",

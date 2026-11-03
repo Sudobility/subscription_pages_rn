@@ -10,4 +10,4 @@ export {
   setRevenueCatRNUser,
   clearRevenueCatRNUser,
   hasRevenueCatRNUser,
-} from './revenuecat-rn.js';
+} from './revenuecat-rn';
