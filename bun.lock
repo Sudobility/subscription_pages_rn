@@ -6,7 +6,7 @@
       "name": "@sudobility/subscription_pages_rn",
       "devDependencies": {
         "@eslint/js": "~10.0.1",
-        "@sudobility/components-rn": "^1.0.143",
+        "@sudobility/components-rn": "^1.0.144",
         "@sudobility/design": "^1.1.69",
         "@sudobility/subscription_lib": "^0.0.64",
         "@sudobility/types": "^1.9.78",
@@ -25,7 +25,7 @@
         "typescript": "~6.0.3",
       },
       "peerDependencies": {
-        "@sudobility/components-rn": "^1.0.143",
+        "@sudobility/components-rn": "^1.0.144",
         "@sudobility/design": "^1.1.69",
         "@sudobility/subscription_lib": "^0.0.64",
         "@sudobility/types": "^1.9.78",
@@ -533,13 +533,15 @@
 
     "@react-navigation/routers": ["@react-navigation/routers@7.6.5", "", { "dependencies": { "nanoid": "^3.3.11" } }, "sha512-hpvpVFt6wu3U014F/0Qy45VZCErlUvIV8kN1L6HovN5P9OpbXAzFTaRQmG7VW6czg2tSkUL5S3dZA0HIu5QirQ=="],
 
+    "@react-navigation/stack": ["@react-navigation/stack@7.12.1", "", { "dependencies": { "@react-navigation/elements": "^2.9.45", "color": "^4.2.3", "use-latest-callback": "^0.2.4" }, "peerDependencies": { "@react-navigation/native": "^7.5.1", "react": ">= 18.2.0", "react-native": "*", "react-native-gesture-handler": ">= 2.0.0", "react-native-safe-area-context": ">= 4.0.0", "react-native-screens": ">= 4.0.0" } }, "sha512-4KEoho3yVy58B1Myj5ZNiSVmA8U8YfVbJrZT23uyA5pUy2dqPANH3REQ/zx/nMw4I62EVvqPHYLLbfGzI9/wTQ=="],
+
     "@sinclair/typebox": ["@sinclair/typebox@0.27.12", "", {}, "sha512-hhyNJ+nbR6ZR7pToHvllEFun9TL0sbL+tk/ON75lo+Xas054uez98qRbsuNt7MBCyZKK4+8Yli/OAGZhmfBZ/g=="],
 
     "@sinonjs/commons": ["@sinonjs/commons@3.0.1", "", { "dependencies": { "type-detect": "4.0.8" } }, "sha512-K3mCHKQ9sVh8o1C9cxkwxaOmXoAMlDxC1mYyHrjqOWEcBjYr76t96zL2zlj5dUGZ3HSw240X1qgH3Mjf1yJWpQ=="],
 
     "@sinonjs/fake-timers": ["@sinonjs/fake-timers@10.3.0", "", { "dependencies": { "@sinonjs/commons": "^3.0.0" } }, "sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA=="],
 
-    "@sudobility/components-rn": ["@sudobility/components-rn@1.0.143", "https://npm.pkg.github.com/download/@sudobility/components-rn/1.0.143/e6cdb3fae8fdeb37a2f0cc88cdb43928dab7ac49", { "peerDependencies": { "@react-native-community/slider": "^4.5.1", "@react-navigation/native": ">=7.0.0", "@react-navigation/native-stack": ">=7.0.0", "@sudobility/design": "^1.1.69", "@sudobility/types": "^1.9.78", "class-variance-authority": "^0.7.0", "clsx": "^2.0.0", "expo-clipboard": ">=5.0.0", "nativewind": ">=4.0.0", "react": "^18.0.0 || ^19.0.0", "react-native": ">=0.72.0", "react-native-gesture-handler": ">=2.0.0", "react-native-reanimated": ">=3.0.0", "react-native-safe-area-context": ">=4.0.0", "react-native-screens": ">=4.0.0", "react-native-svg": ">=13.0.0", "tailwind-merge": ">=2.0.0" } }, "sha512-81ITya2DG/81moVYxcOSk3fx0H8OhoCTJ50UKXn4khX2Y3u6VugKCiceVqhC61D3qAzvbekxD/q1UtD3sFBo7g=="],
+    "@sudobility/components-rn": ["@sudobility/components-rn@1.0.144", "https://npm.pkg.github.com/download/@sudobility/components-rn/1.0.144/d9769b0e40746170ca0fb15d189e63cb65b2d347", { "peerDependencies": { "@react-native-community/slider": "^4.5.1", "@react-navigation/native": ">=7.0.0", "@react-navigation/native-stack": ">=7.0.0", "@react-navigation/stack": ">=7.0.0", "@sudobility/design": "^1.1.69", "@sudobility/types": "^1.9.78", "class-variance-authority": "^0.7.0", "clsx": "^2.0.0", "expo-clipboard": ">=5.0.0", "nativewind": ">=4.0.0", "react": "^18.0.0 || ^19.0.0", "react-native": ">=0.72.0", "react-native-gesture-handler": ">=2.0.0", "react-native-reanimated": ">=3.0.0", "react-native-safe-area-context": ">=4.0.0", "react-native-screens": ">=4.0.0", "react-native-svg": ">=13.0.0", "tailwind-merge": ">=2.0.0" } }, "sha512-6X1d1NQ2qglHZp8MK4lVqDzEiJTvyWkUY0iCepqKApUEBbUtKKqBE7CIeHiyEqHPmnsW++PLVlGBY7WoHANZIQ=="],
 
     "@sudobility/design": ["@sudobility/design@1.1.69", "https://npm.pkg.github.com/download/@sudobility/design/1.1.69/8dc2caf34fda3cd4ccdf67a6e9aecfa40f013fcd", { "peerDependencies": { "clsx": ">=2.0.0", "tailwind-merge": ">=2.0.0" } }, "sha512-MUW9bSwis7thR9GBhqtil6RzgTZVPymqy4GAqFGDBUX7o1FcfmlhnDWcc4acR2Hf3OqkxHGm9gFuMW83/ufuiA=="],
 
