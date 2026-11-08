@@ -18,6 +18,7 @@ import {
   useUserSubscription,
   useBackendSubscription,
   useIsUserSubscribable,
+  isSubscriptionNativeIap,
   getSubscriptionInstance,
   refreshSubscription,
 } from '@sudobility/subscription_lib';
@@ -124,14 +125,25 @@ export function SubscriptionByDurationPage({
     refetchPackages,
   ]);
 
-  // Backend subscription for platform detection
-  const hasBackendConfig = !!(networkClient && baseUrl && token && userId);
+  // Backend subscription for platform detection. Only fetch when the user can
+  // actually own a subscription (`isUserSubscribable`): any real account, plus
+  // an anonymous guest on native IAP — never an anonymous guest on web
+  // billing, whom the backend rejects. On native IAP the guest's token is
+  // admitted by passing `nativeIap`, so a guest's own purchase is returned.
+  const nativeIap = isSubscriptionNativeIap();
+  const hasBackendConfig = !!(
+    networkClient &&
+    baseUrl &&
+    token &&
+    userId &&
+    isUserSubscribable
+  );
   const backendSub = useBackendSubscription(
     networkClient ?? ({} as NetworkClient),
     baseUrl ?? '',
     token ?? '',
     userId ?? '',
-    { testMode, enabled: hasBackendConfig }
+    { testMode, enabled: hasBackendConfig, nativeIap }
   );
 
   const subscriptionPlatform = backendSub.data?.platform ?? null;
