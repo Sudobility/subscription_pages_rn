@@ -4,120 +4,146 @@
 > Run `git commit`, `git push`, `gh pr create`, or `scripts/push_all.sh` **only when the user
 > explicitly asks in that turn**. Approval for an earlier change does not carry forward, and
 > finishing a task is not permission to commit it.
+> Do not use feature branches — stay on the current branch.
 
 ## Overview
 
-React Native page components for subscription management. Provides ready-to-use screens for choosing subscription plans by duration (billing period) or by offer (product catalog). Uses `@sudobility/subscription_lib` hooks for data fetching and `@sudobility/subscription-components-rn` for UI tiles.
+React Native subscription page components. Ready-to-use screens for choosing
+plans grouped by duration (billing period) or by offer (product catalog), plus
+the RevenueCat RN adapter and a safe subscription context. Faithful RN mirror of
+the web `@sudobility/subscription_pages`.
 
-- **Package**: `@sudobility/subscription_pages_rn`
-- **Version**: 0.0.1
-- **License**: BUSL-1.1
-- **Package Manager**: Bun (never npm)
-- **TypeScript**: ^5.5.0, target ES2020, bundler module resolution, strict mode
-- **Build output**: `dist/` (declarations + JS)
-
-## Project Structure
-
-```
-subscription_pages_rn/
-├── package.json
-├── bun.lock
-├── tsconfig.json              # Base TS config (strict, declarations, outDir: dist/)
-├── tsconfig.build.json        # Build config (extends base, excludes tests)
-└── src/
-    ├── index.ts               # Barrel exports (all pages + prop types)
-    └── pages/
-        ├── index.ts           # Page barrel exports
-        ├── SubscriptionByDurationPage.tsx  # Plans grouped by billing period
-        └── SubscriptionByOfferPage.tsx     # Plans grouped by offering
-```
-
-## Key Exports
-
-| Export | Type | Description |
-|--------|------|-------------|
-| `SubscriptionByDurationPage` | component | Subscription plans grouped by billing period (monthly, yearly, etc.) |
-| `SubscriptionByOfferPage` | component | Subscription plans grouped by offering with Free tab |
-| `SubscriptionByDurationPageProps` | interface | Props: `userId`, `userEmail?`, `featuresByPackage?`, `freeFeatures?`, `title?`, `onPurchaseSuccess?`, `onRestoreSuccess?` |
-| `SubscriptionByOfferPageProps` | interface | Props: `userId`, `userEmail?`, `featuresByPackage?`, `freeFeatures?`, `title?`, `onPurchaseSuccess?`, `onRestoreSuccess?` |
+- **Package**: `@sudobility/subscription_pages_rn` (v0.0.94), BUSL-1.1
+- **Package manager**: Bun (never npm). `type: module` (ESM).
+- **TypeScript**: ~6.0.x, target ES2020, `moduleResolution: bundler`, strict.
+- **Build output**: `dist/` (declarations + JS). Library only — no app, no tests.
+- **Published to GitHub Packages** under the `@sudobility` scope — see `.npmrc`
+  (`@sudobility:registry=https://npm.pkg.github.com`). Install needs a GitHub
+  token (`GH_PACKAGES_READ_TOKEN`).
 
 ## Commands
 
 ```bash
-bun run build        # Build TypeScript to dist/ (uses tsconfig.build.json)
-bun run typecheck    # TypeScript check (no emit)
+bun run build         # bunx tsc -p tsconfig.build.json → dist/, then scripts/fix-esm-imports.mjs
+bun run typecheck     # bunx tsc --noEmit
+bun run lint          # eslint . (flat config, --max-warnings 0)
+bun run lint:fix
+bun run format        # prettier --write src
+bun run format:check
 ```
 
-## Peer Dependencies
+`fix-esm-imports.mjs` rewrites emitted relative imports to fully-qualified paths
+(`./core` → `./core/index.js`) so Node's native ESM loader can resolve tsc's
+`bundler`-style output. Must run after every build; it is idempotent.
+
+## Structure
+
+```
+src/
+├── index.ts                 # Barrel: re-exports pages, adapter, provider
+├── nativewind.d.ts          # Augments RN props with `className` for NativeWind
+├── pages/
+│   ├── SubscriptionByDurationPage.tsx
+│   └── SubscriptionByOfferPage.tsx
+├── adapters/revenuecat-rn.ts        # SubscriptionAdapter impl (react-native-purchases)
+├── providers/SafeSubscriptionContext.tsx
+└── components/CrossPlatformSubscriptionInfo.tsx
+```
+
+## Key Exports (`src/index.ts`)
+
+- `SubscriptionByDurationPage` / `SubscriptionByOfferPage` (+ their `...Props`).
+- Adapter: `configureRevenueCatRNAdapter`, `createRevenueCatRNAdapter`,
+  `setRevenueCatRNUser`, `clearRevenueCatRNUser`, `hasRevenueCatRNUser`.
+- Context: `SafeSubscriptionContext`, `useSafeSubscription`,
+  `STUB_SUBSCRIPTION_VALUE`, `SubscriptionContextValue`.
+
+## Peer dependencies
 
 | Package | Version | Purpose |
 |---------|---------|---------|
-| `react` | >=18 | React core |
-| `react-native` | >=0.74 | React Native framework |
-| `@sudobility/subscription_lib` | ^0.0.25 | Subscription hooks and service singleton |
-| `@sudobility/subscription-components-rn` | ^1.0.0 | RN subscription UI components (SubscriptionTile, SegmentedControl, SubscriptionLayout) |
-| `@sudobility/types` | ^1.9.58 | Shared type definitions (SubscriptionPeriod) |
+| `react` / `react-native` | >=18 / >=0.74 | framework |
+| `react-native-purchases` | >=7.0.0 | **optional** — RevenueCat SDK, only for the adapter |
+| `@sudobility/subscription_lib` | ^0.0.65 | hooks + singleton service (`getSubscriptionInstance`, `refreshSubscription`) |
+| `@sudobility/components-rn` | ^1.0.150 | UI tiles via `@sudobility/components-rn/subscription` |
+| `@sudobility/types` | ^1.9.78 | shared types (`SubscriptionPlatform`, `SubscriptionPeriod`, `NetworkClient`) |
+| `@sudobility/design` | ^1.1.69 | design tokens |
 
-## Coding Patterns
+## Architecture & conventions
 
-- **RN-only: userId is required** -- no anonymous/logged-out state. Users are always authenticated on mobile.
-- **Uses subscription_lib hooks directly** -- pages call `usePackagesByDuration`, `useAllOfferings`, `useOfferingPackages`, `useUserSubscription`.
-- **Uses subscription-components-rn for UI** -- `SubscriptionLayout` (with `currentStatus`, `aboveProducts`, `footerContent`), `SegmentedControl`, `SubscriptionTile` (individual props: `id`, `title`, `price`, `features`, etc.), `SubscriptionFooter`.
-- **Passes individual props to SubscriptionTile** -- subscription_lib `SubscriptionPackage` fields are mapped directly to tile props (`id`, `title`, `price`, `periodLabel`, `features`, `isCurrentPlan`). Uses `getPeriodLabel()` helper to convert period strings to display labels.
-- **SubscriptionLayout handles status display** -- current subscription status is passed via `currentStatus` prop (with `activeContent.title` and `activeContent.fields`) instead of custom StyleSheet banner.
-- **RN StyleSheet.create for page-level styling** -- loading/error states and purchasing overlays use plain React Native styles.
-- **Alert.alert for confirmations** -- cancel subscription and error handling use native alerts.
-- **Linking.openURL for management** -- cancel/manage subscription redirects to the store management URL.
-- **Hooks always called unconditionally** -- `useOfferingPackages` in ByOffer page uses a fallback offerId when 'free' is selected.
-- **Purchasing overlay** -- semi-transparent overlay with ActivityIndicator during purchase/restore operations.
+- **Adapter seam.** RN-specific RevenueCat code lives here, NOT in
+  `subscription_lib`, so the platform-agnostic lib never pulls in
+  `react-native-purchases`. App injects it at startup:
+  `initializeSubscription({ adapter: createRevenueCatRNAdapter({ usesNativeIap }) })`.
+  The SDK is `require`d lazily; absent SDK → warn + no-op, never crash.
+- **Styling is NativeWind** (`className` props), NOT RN `StyleSheet`. Page-level
+  JSX uses Tailwind classes; `nativewind.d.ts` adds `className` to RN prop types.
+  `cn` / `pressProps` come from `@sudobility/components-rn`.
+- **Pages are thin.** They call `subscription_lib` hooks directly
+  (`usePackagesByDuration`, `useAllOfferings`, `useOfferingPackages`,
+  `useUserSubscription`, `useBackendSubscription`, `useIsUserSubscribable`,
+  `isSubscriptionNativeIap`) and render `SubscriptionLayout` + `SubscriptionTile`
+  + `SegmentedControl` from components-rn.
+- **`onNavigateToLogin` is required; `userId` is optional.** Logged-out /
+  anonymous web-billing users get login CTAs. Purchase gating is driven by
+  `useIsUserSubscribable()` (the single source of truth), never by an ad-hoc
+  `isLoggedIn` flag — an anonymous IAP user has a `userId` and can own a sub.
+- **Hooks are always called unconditionally.** `useOfferingPackages` uses a
+  `fallbackOfferId` when the "free" tab is selected (never conditional).
+- **Cross-platform detection.** When `networkClient`/`baseUrl`/`token`/`userId`
+  are all present (and the user is subscribable), `useBackendSubscription` fetches
+  the owning platform; a mismatch renders `CrossPlatformSubscriptionInfo` instead
+  of purchase UI.
+- **Localization** via optional `t?: (key, fallback) => string` — every label
+  passes through it with an English fallback.
+- **Store management** uses `Linking.openURL(subscription.managementUrl)`; there
+  is no in-app cancel (and no `Alert`-based flow).
 
-## Related Projects
+## Gotchas
 
-- **subscription_lib** (`@sudobility/subscription_lib`) -- provides hooks (`usePackagesByDuration`, `useAllOfferings`, `useOfferingPackages`, `useUserSubscription`) and singleton (`getSubscriptionInstance`, `refreshSubscription`, `restoreSubscription`).
-- **subscription-components-rn** (`@sudobility/subscription-components-rn`) -- provides UI components (`SubscriptionTile`, `SubscriptionLayout`, `SegmentedControl`, `SubscriptionFooter`).
-- **subscription_pages** (`@sudobility/subscription_pages`) -- web counterpart of this package.
-
-## Git Workflow
-
-- Do not use feature branches for code changes. Always stay on the current branch.
+- **RN offering-ordering fix.** The native RevenueCat adapter returns NO
+  offerings until an app-user id is set, and `useAllOfferings` /
+  `usePackagesByDuration` can fire before `useUserSubscription` sets it. Both
+  pages have a `useEffect` that refetches once the subscription load settles if
+  the result came back empty. The web page does not need this — do not "simplify"
+  it away.
+- **Adapter is module-global state** (`currentUserId`, `configured`, `apiKey`).
+  `setRevenueCatRNUser` tolerates `logOut()` throwing when already anonymous.
 
 ## Screen rendering — safe area & scroll insets
 
 Honour the device safe area on **every** screen. Always use `useSafeAreaInsets()`
-from `react-native-safe-area-context` (or a `SafeAreaView` with explicit `edges`)
+from `react-native-safe-area-context` (or `SafeAreaView` with explicit `edges`)
 and pad by the actual inset value. **Never hard-code a padding/margin in place of
-an inset** — a magic number like `paddingBottom: 80` happens to clear today's
-phone and is wrong on the next one.
-
-Decide per axis, by whether that axis scrolls:
+an inset** — a magic number like `paddingBottom: 80` clears today's phone and is
+wrong on the next one. Decide per axis, by whether that axis scrolls:
 
 **Vertical:**
-- **NOT vertically scrollable** (a fixed screen, a pinned footer/CTA, a camera
-  overlay): the content area must stop at the **top and bottom** safe-area insets
-  — pad top by `insets.top`, bottom by `insets.bottom`. It must not reach the
-  physical top/bottom edge (status bar / notch / home indicator).
-- **Vertically scrollable**: let the scroll view render **full-bleed** to the top
-  and bottom edges, and give it top/bottom **scroll insets** equal to the safe
-  area (`contentInset` + `scrollIndicatorInsets`, or
-  `contentInsetAdjustmentBehavior="automatic"`). Content then starts/ends clear of
-  the unsafe regions while still scrolling edge-to-edge behind them.
+- **NOT vertically scrollable** (fixed screen, pinned footer/CTA, camera
+  overlay): content must stop at the top and bottom safe-area insets — pad top by
+  `insets.top`, bottom by `insets.bottom`. Never reach the physical edge.
+- **Vertically scrollable**: let the scroll view render full-bleed, and give it
+  top/bottom scroll insets equal to the safe area (`contentInset` +
+  `scrollIndicatorInsets`, or `contentInsetAdjustmentBehavior="automatic"`).
 
 **Horizontal** (landscape, display cutout, rounded corners):
-- **NOT horizontally scrollable**: pad left/right by `insets.left` / `insets.right`.
-- **Horizontally scrollable**: render to the left/right edges and give it
-  left/right scroll insets.
+- **NOT horizontally scrollable**: pad left/right by `insets.left`/`insets.right`.
+- **Horizontally scrollable**: render to the edges and give it L/R scroll insets.
 
 **Bottom CTAs under a tab bar — the trap that burns everyone:** inside a tab
-navigator, the bottom safe-area inset (`insets.bottom`, and what a shared
-`BottomActionBar` reads) **already includes the tab-bar height**. So a pinned
+navigator, `insets.bottom` **already includes the tab-bar height**. So a pinned
 bottom bar padded by `insets.bottom` already lands above the tab bar. Therefore:
 - DO pad the bottom bar by `insets.bottom` and nothing more.
-- DON'T add the tab-bar height on top of the inset, and DON'T reserve it again on
-  the screen root — that double-counts and floats the CTA too high.
-- DON'T pass a `tabBarHeight` (or similar) that makes the bar swap the inset for a
-  flat fixed gap — that ignores the inset and drops the CTA under the tab bar.
+- DON'T add the tab-bar height on top, and DON'T reserve it again on the screen
+  root — that double-counts and floats the CTA too high.
+- DON'T pass a `tabBarHeight` that makes the bar swap the inset for a flat gap —
+  that ignores the inset and drops the CTA under the tab bar.
 
-Canonical fixed-screen shape: a flex-column root → the content/scroll region →
-a bottom action bar as the **last child** that pads by `insets.bottom` with no
-manual tab-bar math. Copy a screen already doing this correctly (e.g. a Settings
-screen with a Sign-Out button) rather than re-deriving the padding.
+Canonical fixed-screen shape: flex-column root → content/scroll region → bottom
+action bar as the **last child** padding by `insets.bottom`, no tab-bar math.
+
+## Related projects
+
+- `@sudobility/subscription_lib` — platform-agnostic hooks + service singleton.
+- `@sudobility/components-rn` — RN UI components (subscription subpath).
+- `@sudobility/subscription_pages` — the web counterpart this mirrors.
