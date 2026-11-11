@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/subscription_pages_rn",
-  "version": "0.0.99",
+  "version": "0.0.100",
   "description": "Subscription page components for React Native applications",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -26,9 +26,9 @@
     "react": ">=18",
     "react-native": ">=0.74",
     "react-native-purchases": ">=7.0.0",
-    "@sudobility/subscription_lib": "^0.0.66",
-    "@sudobility/components-rn": "^1.0.155",
-    "@sudobility/types": "^1.9.79",
+    "@sudobility/subscription_lib": "^0.0.67",
+    "@sudobility/components-rn": "^1.0.156",
+    "@sudobility/types": "^1.10.1",
     "@sudobility/design": "^1.1.71"
   },
   "peerDependenciesMeta": {
@@ -39,9 +39,9 @@
   "devDependencies": {
     "@sudobility/design": "^1.1.71",
     "@eslint/js": "~10.0.1",
-    "@sudobility/components-rn": "^1.0.155",
-    "@sudobility/subscription_lib": "^0.0.66",
-    "@sudobility/types": "^1.9.79",
+    "@sudobility/components-rn": "^1.0.156",
+    "@sudobility/subscription_lib": "^0.0.67",
+    "@sudobility/types": "^1.10.1",
     "@tanstack/react-query": "~5.104.5",
     "@types/react": "~19.3.0",
     "@typescript-eslint/eslint-plugin": "~8.72.0",
