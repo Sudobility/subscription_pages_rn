@@ -18,3 +18,20 @@ app_store/builds/
 
 # App Store API keys
 app_store/.keys/
+
+# Windows (React Native Windows) build artifacts
+windows/[Dd]ebug*/
+windows/[Rr]elease*/
+windows/[Aa][Rr][Mm]64/
+windows/[Xx]64/
+windows/[Oo]bj/
+windows/[Bb]in/
+windows/**/Generated Files/
+windows/*AppPackages*
+windows/*BundleArtifacts*
+windows/.vs/
+windows/packages/
+windows/msbuild_*.binlog
+windows/msbuild_*.wrn
+windows/msbuild_*.err
+windows/*.ProjectImports.zip
