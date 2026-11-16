@@ -8,7 +8,7 @@
         "@eslint/js": "~10.0.1",
         "@sudobility/components-rn": "^1.0.160",
         "@sudobility/design": "^1.1.72",
-        "@sudobility/subscription_lib": "^0.0.70",
+        "@sudobility/subscription_lib": "^0.0.71",
         "@sudobility/types": "^1.11.2",
         "@tanstack/react-query": "~5.104.5",
         "@types/react": "~19.3.0",
@@ -27,7 +27,7 @@
       "peerDependencies": {
         "@sudobility/components-rn": "^1.0.160",
         "@sudobility/design": "^1.1.72",
-        "@sudobility/subscription_lib": "^0.0.70",
+        "@sudobility/subscription_lib": "^0.0.71",
         "@sudobility/types": "^1.11.2",
         "react": ">=18",
         "react-native": ">=0.74",
@@ -439,7 +439,7 @@
 
     "@sudobility/di": ["@sudobility/di@1.5.84", "https://npm.pkg.github.com/download/@sudobility/di/1.5.84/346e2e528531ab5f52ff6cc60f12de20dd921d06", { "peerDependencies": { "@notifee/react-native": ">=7.0.0", "@react-native-async-storage/async-storage": ">=1.19.0", "@react-native-community/netinfo": ">=9.0.0", "@react-native-firebase/analytics": ">=18.0.0", "@react-native-firebase/app": ">=18.0.0", "@react-native-firebase/messaging": ">=18.0.0", "@sudobility/types": "^1.9.78", "firebase": ">=11.0.0", "react": ">=18.0.0", "react-native": ">=0.70.0" } }, "sha512-98W1JuNJAUyQH5DuvL9R7uumjifS/+K8NW5YV2Ob2mi7r/8P9ccGyFjAI54jV6E9cX4V5FCm5eXDY+D9NjcT7g=="],
 
-    "@sudobility/subscription_lib": ["@sudobility/subscription_lib@0.0.70", "https://npm.pkg.github.com/download/@sudobility/subscription_lib/0.0.70/1473f13691a9fd1a1711b90a7a6ef119f7424aa5", { "peerDependencies": { "@sudobility/di": "^1.5.90", "@sudobility/types": "^1.11.2", "@tanstack/react-query": "^5.0.0", "react": "^18.0.0 || ^19.0.0" } }, "sha512-AGIAzNSI7EJ5bdGQbpy5TwLj6UndrkmkzE+wxUXmbawuMC4OeHR++asqyAN/3qw22noTf5GJIxSf1OufDdxkQg=="],
+    "@sudobility/subscription_lib": ["@sudobility/subscription_lib@0.0.71", "https://npm.pkg.github.com/download/@sudobility/subscription_lib/0.0.71/f0cccb85fe7cc05b8cf624187c22743378becc0c", { "peerDependencies": { "@sudobility/di": "^1.5.91", "@sudobility/types": "^1.11.2", "@tanstack/react-query": "^5.0.0", "react": "^18.0.0 || ^19.0.0" } }, "sha512-5TBB9SS9qgN0AylVzp2+CL/HqecYXg4e0XiJDZicdWrPKZuFrTDT1qA08sHYg3FTBM0TbXJKx452JGI1BR20fQ=="],
 
     "@sudobility/types": ["@sudobility/types@1.11.2", "https://npm.pkg.github.com/download/@sudobility/types/1.11.2/d6d0b1809eaca31ef737646032cc431111b58a49", {}, "sha512-gg+bPtcOGNETDt9oNdjcn7R22EfFWmRxMOhj0ADwulBJ9tJ4NaMaXkrTtkWF+figSDZqmD9a9kodgOHseq8gsQ=="],
 

@@ -15,8 +15,8 @@ import { View, Text, Pressable, Linking } from 'react-native';
 import {
   SubscriptionPlatform,
   type SubscriptionPeriod,
+  type NetworkClient,
 } from '@sudobility/types';
-import type { NetworkClient } from '@sudobility/types';
 import {
   useAllOfferings,
   useOfferingPackages,
