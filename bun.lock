@@ -6,7 +6,7 @@
       "name": "@sudobility/subscription_pages_rn",
       "devDependencies": {
         "@eslint/js": "~10.0.1",
-        "@sudobility/components-rn": "^1.0.160",
+        "@sudobility/components-rn": "^1.0.161",
         "@sudobility/design": "^1.1.72",
         "@sudobility/subscription_lib": "^0.0.71",
         "@sudobility/types": "^1.11.2",
@@ -25,7 +25,7 @@
         "typescript": "~6.0.3",
       },
       "peerDependencies": {
-        "@sudobility/components-rn": "^1.0.160",
+        "@sudobility/components-rn": "^1.0.161",
         "@sudobility/design": "^1.1.72",
         "@sudobility/subscription_lib": "^0.0.71",
         "@sudobility/types": "^1.11.2",
@@ -433,7 +433,7 @@
 
     "@sinonjs/fake-timers": ["@sinonjs/fake-timers@10.3.0", "", { "dependencies": { "@sinonjs/commons": "^3.0.0" } }, "sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA=="],
 
-    "@sudobility/components-rn": ["@sudobility/components-rn@1.0.160", "https://npm.pkg.github.com/download/@sudobility/components-rn/1.0.160/1bd700da441729b127132bbef01b0e8430469b8d", { "peerDependencies": { "@react-native-clipboard/clipboard": ">=1.0.0", "@react-native-community/slider": "^4.5.1", "@react-native-segmented-control/segmented-control": ">=2.5.0", "@react-navigation/native": ">=7.0.0", "@react-navigation/native-stack": ">=7.0.0", "@react-navigation/stack": ">=7.0.0", "@sudobility/design": "^1.1.72", "@sudobility/types": "^1.11.2", "class-variance-authority": "^0.7.0", "clsx": "^2.0.0", "nativewind": ">=4.0.0", "react": "^18.0.0 || ^19.0.0", "react-native": ">=0.72.0", "react-native-gesture-handler": ">=2.0.0", "react-native-reanimated": ">=3.0.0", "react-native-safe-area-context": ">=4.0.0", "react-native-screens": ">=4.0.0", "react-native-svg": ">=13.0.0", "tailwind-merge": ">=2.0.0" } }, "sha512-t+pkKjf+bHNoKahuXHN/unLBmXJum/uckPaeRnIiJVcHh+FcEJixeD9jScf7ezOxiEcTtgpQu1XpfE58wU2CIA=="],
+    "@sudobility/components-rn": ["@sudobility/components-rn@1.0.161", "https://npm.pkg.github.com/download/@sudobility/components-rn/1.0.161/11b9f51cbfe300535d801041b715cf7608534172", { "peerDependencies": { "@react-native-clipboard/clipboard": ">=1.0.0", "@react-native-community/slider": "^4.5.1", "@react-native-segmented-control/segmented-control": ">=2.5.0", "@react-navigation/native": ">=7.0.0", "@react-navigation/native-stack": ">=7.0.0", "@react-navigation/stack": ">=7.0.0", "@sudobility/design": "^1.1.72", "@sudobility/types": "^1.11.2", "class-variance-authority": "^0.7.0", "clsx": "^2.0.0", "nativewind": ">=4.0.0", "react": "^18.0.0 || ^19.0.0", "react-native": ">=0.72.0", "react-native-gesture-handler": ">=2.0.0", "react-native-reanimated": ">=3.0.0", "react-native-safe-area-context": ">=4.0.0", "react-native-screens": ">=4.0.0", "react-native-svg": ">=13.0.0", "tailwind-merge": ">=2.0.0" } }, "sha512-89RxozwnGO2BxK1yfys5WHmihQ/8aZMnrmxqFRRBDLQfcN6GG9jLR4OWqIpKEMSePMd2TBJfsdO6NQZkTWwBwg=="],
 
     "@sudobility/design": ["@sudobility/design@1.1.72", "https://npm.pkg.github.com/download/@sudobility/design/1.1.72/ee29355781de03bb2e14986a51b75f8aaba4cd1b", { "peerDependencies": { "clsx": ">=2.0.0", "tailwind-merge": ">=2.0.0" } }, "sha512-gYRtMzHvVTZqLO3j0R9HLA8+gHnSl2GZ+swbPTL1+itfPIpBt0dr+k5AkaLFYar1pbL5XG+GpPtm/9oguSPj+A=="],
 
