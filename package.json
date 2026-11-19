@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/subscription_pages_rn",
-  "version": "0.0.106",
+  "version": "0.0.107",
   "description": "Subscription page components for React Native applications",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -12,6 +12,12 @@
       "react-native": "./src/index.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.js"
+    },
+    "./firebase": {
+      "types": "./dist/firebase.d.ts",
+      "react-native": "./src/firebase.ts",
+      "import": "./dist/firebase.js",
+      "require": "./dist/firebase.js"
     }
   },
   "scripts": {
@@ -20,26 +26,38 @@
     "lint": "eslint . --ext ts,tsx --ignore-pattern dist --ignore-pattern node_modules --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext ts,tsx --ignore-pattern dist --ignore-pattern node_modules --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json}\""
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json}\"",
+    "test:unit": "vitest run",
+    "verify": "bun run typecheck && bun run lint && bun run format:check && bun run test:unit && bun run build"
   },
   "peerDependencies": {
     "react": ">=18",
     "react-native": ">=0.74",
     "react-native-purchases": ">=7.0.0",
     "@sudobility/subscription_lib": "^0.0.71",
-    "@sudobility/components-rn": "^1.0.161",
+    "@sudobility/components-rn": "^1.0.162",
     "@sudobility/types": "^1.11.2",
-    "@sudobility/design": "^1.1.72"
+    "@sudobility/design": "^1.1.72",
+    "@sudobility/auth_lib": "^0.0.134",
+    "@sudobility/di": "^1.5.91"
   },
   "peerDependenciesMeta": {
     "react-native-purchases": {
       "optional": true
+    },
+    "@sudobility/auth_lib": {
+      "optional": true
+    },
+    "@sudobility/di": {
+      "optional": true
     }
   },
   "devDependencies": {
-    "@sudobility/design": "^1.1.72",
     "@eslint/js": "~10.0.1",
-    "@sudobility/components-rn": "^1.0.161",
+    "@sudobility/auth_lib": "^0.0.134",
+    "@sudobility/components-rn": "^1.0.162",
+    "@sudobility/design": "^1.1.72",
+    "@sudobility/di": "^1.5.91",
     "@sudobility/subscription_lib": "^0.0.71",
     "@sudobility/types": "^1.11.2",
     "@tanstack/react-query": "~5.104.5",
@@ -51,10 +69,13 @@
     "eslint-plugin-prettier": "~5.5.7",
     "eslint-plugin-react-hooks": "~7.1.1",
     "eslint-plugin-react-refresh": "~0.4.26",
+    "jsdom": "~30.1.3",
     "prettier": "~3.9.10",
     "react": "~19.3.1",
+    "react-dom": "~19.3.1",
     "react-native": "~0.83.10",
-    "typescript": "~6.0.3"
+    "typescript": "~6.0.3",
+    "vitest": "~4.1.12"
   },
   "publishConfig": {
     "access": "public"

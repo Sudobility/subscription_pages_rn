@@ -8,10 +8,10 @@
 
 import { useState, useEffect } from 'react';
 import { View, Text, Linking } from 'react-native';
-import {
+import type {
   SubscriptionPlatform,
-  type SubscriptionPeriod,
-  type NetworkClient,
+  SubscriptionPeriod,
+  NetworkClient,
 } from '@sudobility/types';
 import {
   usePackagesByDuration,
@@ -30,6 +30,7 @@ import {
   type FreeTileConfig,
 } from '@sudobility/components-rn/subscription';
 import { CrossPlatformSubscriptionInfo } from '../components/CrossPlatformSubscriptionInfo';
+import { getCurrentSubscriptionPlatform } from './currentPlatform';
 
 export interface SubscriptionByDurationPageProps {
   /** Callback when user needs to navigate to login. offerId and packageId are passed when a specific package CTA is clicked. */
@@ -50,7 +51,10 @@ export interface SubscriptionByDurationPageProps {
   title?: string;
   /** Additional NativeWind classes */
   className?: string;
-  /** Current platform (defaults to iOS on RN) */
+  /**
+   * Current platform. Defaults to the platform the app is running on
+   * (`Platform.OS`: iOS, Android, macOS; Windows bills as Web).
+   */
   currentPlatform?: SubscriptionPlatform;
   /** Network client for backend subscription fetch */
   networkClient?: NetworkClient;
@@ -77,7 +81,7 @@ export function SubscriptionByDurationPage({
   freeFeatures,
   title = 'Choose Your Plan',
   className,
-  currentPlatform = SubscriptionPlatform.iOS,
+  currentPlatform = getCurrentSubscriptionPlatform(),
   networkClient,
   baseUrl,
   token,

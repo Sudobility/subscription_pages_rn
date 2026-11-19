@@ -12,10 +12,10 @@
 
 import { useState, useEffect, type ReactNode } from 'react';
 import { View, Text, Pressable, Linking } from 'react-native';
-import {
+import type {
   SubscriptionPlatform,
-  type SubscriptionPeriod,
-  type NetworkClient,
+  SubscriptionPeriod,
+  NetworkClient,
 } from '@sudobility/types';
 import {
   useAllOfferings,
@@ -36,6 +36,7 @@ import {
 } from '@sudobility/components-rn/subscription';
 import { cn, pressProps } from '@sudobility/components-rn';
 import { CrossPlatformSubscriptionInfo } from '../components/CrossPlatformSubscriptionInfo';
+import { getCurrentSubscriptionPlatform } from './currentPlatform';
 
 export interface SubscriptionByOfferPageProps {
   /** Callback when user needs to navigate to login. offerId and packageId are passed when a specific package CTA is clicked. */
@@ -52,7 +53,10 @@ export interface SubscriptionByOfferPageProps {
   title?: string;
   /** Additional NativeWind classes */
   className?: string;
-  /** Current platform (defaults to iOS on RN) */
+  /**
+   * Current platform. Defaults to the platform the app is running on
+   * (`Platform.OS`: iOS, Android, macOS; Windows bills as Web).
+   */
   currentPlatform?: SubscriptionPlatform;
   /** Network client for backend subscription fetch */
   networkClient?: NetworkClient;
@@ -131,7 +135,7 @@ export function SubscriptionByOfferPage({
   freeFeatures,
   title = 'Choose Your Plan',
   className,
-  currentPlatform = SubscriptionPlatform.iOS,
+  currentPlatform = getCurrentSubscriptionPlatform(),
   networkClient,
   baseUrl,
   token,
@@ -486,14 +490,14 @@ export function SubscriptionByOfferPage({
                       {periodLabel}
                     </Text>
                     {savings !== null ? (
-                      <Text className='text-sm text-success'>
+                      <Text className='text-sm font-medium text-success'>
                         {loc('save_percent', `Save ${savings}%`).replace(
                           '{{percent}}',
                           String(savings)
                         )}
                       </Text>
                     ) : isCurrentPlan ? (
-                      <Text className='text-sm text-primary'>
+                      <Text className='text-sm font-medium text-primary'>
                         {loc('current_plan', 'Current Plan')}
                       </Text>
                     ) : null}

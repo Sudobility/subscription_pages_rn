@@ -1,39 +1,46 @@
 /**
- * @fileoverview Safe subscription context for React Native.
+ * Safe Subscription Context
  *
- * Provides a context that returns a stub value (`isSubscribed: false`) when
- * no provider wraps the tree. This allows components to read subscription
- * state without crashing when a subscription provider is absent. Uses a
- * default context value rather than null, so `useSafeSubscription()` never
- * throws and never returns null.
+ * Provides a context that can be safely used even when subscription
+ * provider isn't loaded yet. Returns stub values for unauthenticated users.
  *
- * Moved here from @sudobility/building_blocks_rn so that building_blocks_rn
- * keeps no subscription code — the RN mirror of the web split, where
- * SafeSubscriptionContext lives in @sudobility/subscription_pages.
+ * RN mirror of @sudobility/subscription_pages' SafeSubscriptionContext: the
+ * value is the same `SubscriptionContextValue` the subscription provider
+ * publishes (here from @sudobility/components-rn/subscription), and the stub
+ * is the same no-op value, so a consumer reads one shape on both platforms.
  */
+
 import { createContext, useContext } from 'react';
+import type { SubscriptionContextValue } from '@sudobility/components-rn/subscription';
 
-export interface SubscriptionContextValue {
-  isSubscribed: boolean;
-  subscriptionPlan: string | null;
-  expirationDate: string | null;
-  isLoading: boolean;
-}
+export type { SubscriptionContextValue };
 
+/**
+ * Stub subscription value for unauthenticated users or when
+ * subscription provider hasn't loaded yet.
+ */
 export const STUB_SUBSCRIPTION_VALUE: SubscriptionContextValue = {
-  isSubscribed: false,
-  subscriptionPlan: null,
-  expirationDate: null,
+  products: [],
+  currentSubscription: null,
   isLoading: false,
+  error: null,
+  initialize: () => Promise.resolve(),
+  purchase: () => Promise.resolve(false),
+  restore: () => Promise.resolve(false),
+  refresh: () => Promise.resolve(),
+  clearError: () => {},
 };
 
+/**
+ * Context that provides subscription state with safe defaults.
+ */
 export const SafeSubscriptionContext = createContext<SubscriptionContextValue>(
   STUB_SUBSCRIPTION_VALUE
 );
 
 /**
  * Hook to safely access subscription context.
- * Returns stub value when no provider is available.
+ * Returns stub values if provider isn't available.
  */
 export function useSafeSubscription(): SubscriptionContextValue {
   return useContext(SafeSubscriptionContext);
